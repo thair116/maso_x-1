@@ -12,13 +12,16 @@ contract UserNameSpace {
 		if (nameAlreadyTaken(name)) {
 			return false;
 		}
-		names[name] = msg.sender;
+		// names[name] = msg.sender;
+		names[name] = tx.origin;
+
+
 		return true;
 	}
 
 	// this will not modify the blockchain
 	function nameAlreadyTaken(string name) returns (bool) {
-		// TODO there must be a better way to do this
+		// TODO is this available as a global constant?
 		if (names[name] == 0x0000000000000000000000000000000000000000) {
 			return false;
 		}
@@ -29,3 +32,9 @@ contract UserNameSpace {
 		return names[name];
 	}
  }
+
+
+ // Could get the tests to work
+ // .... or could start trying to interact with the code assuming it did work
+
+ // would prefer to get the test working, but could 

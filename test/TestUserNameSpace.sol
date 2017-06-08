@@ -30,12 +30,12 @@ contract TestUserNameSpace {
 		Assert.equal(space.newUser('enodios'), false, 'duplicate name allowed');
 	}
 
-	// TODO make this work
-	// function testOwnerIsRegistered(){
-	// 	UserNameSpace space = UserNameSpace(DeployedAddresses.UserNameSpace());
+	function testOwnerIsRegistered(){
+		UserNameSpace space = UserNameSpace(DeployedAddresses.UserNameSpace());
 
-	// 	space.newUser('enodios');
+		space.newUser('enodios');
 
-	// 	Assert.equal(space.getOwner('enodios'), tx.origin, 'owner not saved');
-	// }
+		// Assert.equal(space.getOwner('enodios'), msg.sender, 'owner not saved');
+		Assert.equal(space.getOwner('enodios'), tx.origin, 'owner not saved');
+	}
 }
