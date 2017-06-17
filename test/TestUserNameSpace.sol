@@ -35,8 +35,6 @@ contract TestUserNameSpace {
 
 		space.newUser('enodios', msg.sender);
 
-		// Assert.equal(space.getOwner('enodios'), msg.sender, 'owner not saved');
-		// Assert.equal(space.getOwner('enodios'), tx.origin, 'owner not saved');
 		Assert.equal(space.getOwner('enodios'), msg.sender, 'owner not saved');
 	}
 }

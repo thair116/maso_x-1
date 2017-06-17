@@ -12,8 +12,6 @@ contract UserNameSpace {
 		if (nameAlreadyTaken(name)) {
 			return false;
 		}
-		// names[name] = msg.sender;
-		// names[name] = tx.origin;
 		names[name] = sender;
 
 
@@ -33,9 +31,3 @@ contract UserNameSpace {
 		return names[name];
 	}
  }
-
-
- // Could get the tests to work
- // .... or could start trying to interact with the code assuming it did work
-
- // would prefer to get the test working, but could 
