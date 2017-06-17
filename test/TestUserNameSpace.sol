@@ -17,7 +17,7 @@ contract TestUserNameSpace {
 	function testCreateNewUser() {
 		UserNameSpace space = UserNameSpace(DeployedAddresses.UserNameSpace());
 
-		space.newUser('enodios');
+		space.newUser('enodios', msg.sender);
 
 		Assert.equal(space.nameAlreadyTaken('enodios'), true, 'name space does not properly realizes name is taken');
 	}
@@ -25,17 +25,18 @@ contract TestUserNameSpace {
 	function testCantCreateDuplicateUser() {
 		UserNameSpace space = UserNameSpace(DeployedAddresses.UserNameSpace());
 
-		space.newUser('enodios');
+		space.newUser('enodios', msg.sender);
 
-		Assert.equal(space.newUser('enodios'), false, 'duplicate name allowed');
+		Assert.equal(space.newUser('enodios', msg.sender), false, 'duplicate name allowed');
 	}
 
 	function testOwnerIsRegistered(){
 		UserNameSpace space = UserNameSpace(DeployedAddresses.UserNameSpace());
 
-		space.newUser('enodios');
+		space.newUser('enodios', msg.sender);
 
 		// Assert.equal(space.getOwner('enodios'), msg.sender, 'owner not saved');
-		Assert.equal(space.getOwner('enodios'), tx.origin, 'owner not saved');
+		// Assert.equal(space.getOwner('enodios'), tx.origin, 'owner not saved');
+		Assert.equal(space.getOwner('enodios'), msg.sender, 'owner not saved');
 	}
 }

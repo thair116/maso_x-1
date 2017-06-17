@@ -6,14 +6,15 @@ contract UserNameSpace {
 	// create a new user in this name space
 	// this will modify the blockchain
 	// TODO perhaps make name into bytes32
-	function newUser(string name) returns (bool) {
+	function newUser(string name, address sender) returns (bool) {
 		// check to see if this name is available
 		// TODO maybe this should throw instead
 		if (nameAlreadyTaken(name)) {
 			return false;
 		}
 		// names[name] = msg.sender;
-		names[name] = tx.origin;
+		// names[name] = tx.origin;
+		names[name] = sender;
 
 
 		return true;
